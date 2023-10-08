@@ -16,9 +16,15 @@ int main()
 
   data = getenv("QUERY_STRING");
 
-  sscanf(data, "name=%99s", name);
-  printf("<p>Hi %s. Nice to meet you!</p>", name);
-  printf("<p>What kind of animal are you interested in?</p>");
+  if (sscanf(data, "name=%99s", name) == 1)
+  {
+    printf("<p>Hi %s. Nice to meet you!</p>", name);
+    printf("<p>What kind of animal are you interested in?</p>");
+  }
+  else
+  {
+    printf("<p>Invalid Data!</p>");
+  }
 
   printf("</body></html>");
   return 0;
