@@ -11,9 +11,12 @@ int main()
   char name[100] = "";
 
   printf("Content-type:text/html\r\n\r\n");
-  printf("<html><head><title> User Name INPUT CGI (GET)</title></head>\n");
-  printf("<body>\n");
+  printf("<html><head>");
+  printf("<title> User Name INPUT CGI (GET)</title>");
+  printf("<link href= 'style.css' rel='stylesheet'/>");
+  printf("</head>\n");
 
+  printf("<body>\n");
   data = getenv("QUERY_STRING");
 
   if (sscanf(data, "name=%99s", name) == 1)
