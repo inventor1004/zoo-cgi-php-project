@@ -5,15 +5,49 @@
     <link href="style.css" rel="stylesheet" />
   </head>
 
+  <script type="text/javascript">
+    let whichDiv = 1; 
+
+    function nextDiv()
+    {
+      document.getElementById("section1").style.display="none";
+		  document.getElementById("section2").style.display="block";
+      document.getElementById("greeting").textContent = `Hello ${name}! What mystery animal are you looking for?`;
+      whichDiv = 2;
+    }
+
+  </script>
+
   <body>
-    <h1 class ="greeting">Hello! Welcome to fantasy zoo!</h1>
-    <form name="firstPage" action="./animals.exe" method="GET">
-      <table>
-        <td>What is your name, traveler? &nbsp;
-          <input class="nameTextBox" type="text"  name="name" placeholder="please type your name">
-          <input class="nameSubmitBT"type="submit" name="nameSubmit"> 
-        </td>
-      </table>
+    <h1 class ="greeting" id ="greeting">Hello! Welcome to fantasy zoo!</h1>
+    <form id="form1" name="firstPage" action="./animals.exe" method="GET">
+        <div id = "section1">
+          <table>
+            <td>What is your name, traveler? &nbsp;
+              <input class="name-textBox" type="text" id="name" name="name" placeholder="please type your name">
+              <button class="name-submit" type="button" onclick="nextDiv()">Submit</button> <!-- Make sure the type is "button". If we not set that, it will be submit by default.-->
+            </td>
+          </table>
+        </div>
+    
+
+        <div id = "section2" style="display: block;">
+          <table>
+            <td>Please choose the animal you want to travel &nbsp;
+              <select id="animal" name="animal">
+                <option value="" disabled selected>-- choose the animal --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+              <input class="animal-submit" type="submit" name="animal-submit"> 
+          </td>
+          </table>
+        </div>
+
     </form>
   </body>
 </html>
