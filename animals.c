@@ -9,6 +9,7 @@ int main()
   int dataSize = 0;
 
   char name[100] = "";
+  char animal[100] = "";
 
   printf("Content-type:text/html\r\n\r\n");
   printf("<html><head>");
@@ -19,10 +20,12 @@ int main()
   printf("<body>\n");
   data = getenv("QUERY_STRING");
 
-  if (sscanf(data, "name=%99s", name) == 1)
+  if (sscanf(data, "name=%99[^&]&animal=%99s", name, animal) == 2)
   {
-    printf("<p>Hi %s. Nice to meet you!</p>", name);
-    printf("<p>What kind of animal are you interested in?</p>");
+    printf("<h1 class ='greeting'>Hi %s. You choose %s Nice to meet you!</h1>", name, animal);
+    printf("<table>");
+    printf("<td>What kind of animal are you interested in?</td>");
+    printf("</table>");
   }
   else
   {
