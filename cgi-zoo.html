@@ -6,8 +6,15 @@
   </head>
 
   <script type="text/javascript">
-    let whichDiv = 1; 
+    let whichDiv = 1;
+    let name = ""; 
+    let animal = "";
 
+
+    /* function name: nextDive() */
+    /* parameter    : voud       */
+    /* return       : void       */
+    /* description  : move to the next division. First division will be blocked*/
     function nextDiv()
     {
       document.getElementById("section1").style.display="none";
@@ -16,34 +23,66 @@
       whichDiv = 2;
     }
 
+    
+    /* function name: inputValidate() */
+    /* parameter    : voud       */
+    /* return       : void       */
+    /* description  : check wheter the user input is blank or not. If the user enters the blacnk*/
+    /*                the error messeage will be printed.                                       */
+    function inputValidate()
+    {
+      if (whichDiv == 1) {
+        name = document.getElementById("nameTextBox").value;
+      }
+      else {
+        animal = document.getElementById("animalSelect").value;
+      }
+
+      if (name == "") {
+        document.getElementById("nameError").textContent = "Sorry, you can not submit blank.";
+      }
+      else if (animal == "" && whichDiv == 2) {
+        document.getElementById("selectError").textContent = "Sorry, please choose at leaset one animal.";
+      }
+      else {
+        if (whichDiv == 1) nextDiv();
+        else {
+          document.getElementById("form1").submit();
+        }
+      }
+
+    }
+
   </script>
 
   <body>
-    <h1 class ="greeting" id ="greeting">Hello! Welcome to fantasy zoo!</h1>
+    <h1 class ="greeting" id ="greeting">Hello! Welcome to mystery zoo!</h1>
     <form id="form1" name="firstPage" action="./animals.exe" method="GET">
         <div id = "section1">
           <table>
-            <td>What is your name, traveler? &nbsp;
-              <input class="name-textBox" type="text" id="name" name="name" placeholder="please type your name">
-              <button class="name-submit" type="button" onclick="nextDiv()">Submit</button> <!-- Make sure the type is "button". If we not set that, it will be submit by default.-->
+            <td>How can I call you, traveler? <br>
+              <input class="name-textBox" id="nameTextBox" type="text" id="name" name="name" placeholder="please type your name">
+              <button class="name-submit" type="button" onclick="inputValidate()">Submit</button> <!-- Make sure the type is "button". If we not set that, it will be submit by default.-->
+              <div class="name-error" id="nameError"></div>
             </td>
           </table>
         </div>
     
 
-        <div id = "section2" style="display: block;">
+        <div id = "section2" style="display: none;">
           <table>
-            <td>Please choose the animal you want to travel &nbsp;
-              <select id="animal" name="animal">
+            <td>Please select the animal you would like to know more about <br>
+              <select id="animalSelect" name="animal">
                 <option value="" disabled selected>-- choose the animal --</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
+                <option value="dargon">dargon</option>
+                <option value="unicorn">unicorn</option>
+                <option value="pegasus">pegasus</option>
+                <option value="hydra">hydra</option>
+                <option value="kerberos">kerberos</option>
+                <option value="drunk-friend">drunk-friend</option>
               </select>
-              <input class="animal-submit" type="submit" name="animal-submit"> 
+              <button class="animal-submit" type="button" onclick="inputValidate()">Submit</button> 
+              <div class="select-error" id="selectError"></div>
           </td>
           </table>
         </div>
